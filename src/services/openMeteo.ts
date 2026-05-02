@@ -1,12 +1,33 @@
+// services/openMeteo.ts
 import axios from 'axios';
-import type { openMeteoResponse } from '../types/openMeteoResponse';
+
+export interface OpenMeteoResult {
+  name: string;
+  latitude: number;
+  longitude: number;
+  country: string;
+  timezone: string;
+}
+
+export interface OpenMeteoResponse {
+  results: OpenMeteoResult[];
+}
 
 const API_URL = `https://geocoding-api.open-meteo.com/v1/search`;
 
-const fetchLocation = async (): Promise<openMeteoResponse> => {
-  const { data } = await axios.get(API_URL);
+export const fetchLocationByCity = async (
+  city: string,
+): Promise<OpenMeteoResponse> => {
+  const { data } = await axios.get<OpenMeteoResponse>(API_URL, {
+    params: {
+      name: city,
+      count: 1,
+      language: 'en',
+      format: 'json',
+    },
+  });
 
   return data;
 };
 
-export default fetchLocation;
+export default fetchLocationByCity;

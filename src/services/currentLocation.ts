@@ -1,12 +1,13 @@
+// services/ipapi.ts
 import axios from 'axios';
-import type { Location } from '../types/Location';
+import type { IpGeoResponse } from '../types/IpGeoResponse';
 
-const BASE_URL = `https://time.now/developer/api`;
+const API_URL = 'https://ipapi.co/json/';
 
-const fetchTimeByIP = async (): Promise<Location> => {
-  const { data } = await axios.get<Location>(`${BASE_URL}/ip`);
+export const fetchGeoByIP = async (): Promise<IpGeoResponse> => {
+  const { data } = await axios.get<IpGeoResponse>(API_URL);
 
   return data;
 };
 
-export default fetchTimeByIP;
+export default fetchGeoByIP;
