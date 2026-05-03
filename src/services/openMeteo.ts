@@ -1,17 +1,7 @@
 // services/openMeteo.ts
 import axios from 'axios';
 
-export interface OpenMeteoResult {
-  name: string;
-  latitude: number;
-  longitude: number;
-  country: string;
-  timezone: string;
-}
-
-export interface OpenMeteoResponse {
-  results: OpenMeteoResult[];
-}
+import type { OpenMeteoResponse } from '../types/openMeteoResponse';
 
 const API_URL = `https://geocoding-api.open-meteo.com/v1/search`;
 
