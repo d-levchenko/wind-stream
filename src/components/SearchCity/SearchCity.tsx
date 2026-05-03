@@ -1,51 +1,49 @@
-import { useEffect, useState } from 'react';
-import fetchGeoByIP from '../../services/currentLocation';
-import fetchLocationByCity from '../../services/openMeteo';
+import { useState, useEffect } from 'react';
+
+import { fetchGeoByIP } from '../../services/geolocation';
+import { fetchLocationByCity } from '../../services/geocoding';
+
+import type { SelectedLocation } from '../../types/SelectedLocation';
 
 import toast, { Toaster } from 'react-hot-toast';
 
-type LocationData = {
-  name: string;
-  latitude: number;
-  longitude: number;
-};
+interface SearchCityProps {
+  onSelectLocation: (location: SelectedLocation) => void;
+}
 
-const SearchCity = () => {
-  const [location, setLocation] = useState<LocationData | null>(null);
-  const [search, setSearch] = useState('');
+const SearchCity = ({ onSelectLocation }: SearchCityProps) => {
+  const [search, setSearch] = useState<string>('');
 
   useEffect(() => {
     const loadInitial = async () => {
       try {
         const { city, latitude, longitude } = await fetchGeoByIP();
 
-        setLocation({
+        onSelectLocation({
           name: city,
           latitude,
           longitude,
         });
       } catch {
-        toast.error('Failed to detect location by IP');
+        toast.error(`Error: something went wrong while loading your location`);
       }
     };
 
     loadInitial();
-  }, []);
+  }, [onSelectLocation]);
 
   const handleSearch = async () => {
     try {
-      const geoData = await fetchLocationByCity(search);
+      const { results } = await fetchLocationByCity(search.trim());
 
-      if (!geoData?.results?.length) {
-        toast.error('Search field is empty or city name too short', {
-          position: 'top-center',
-        });
+      if (!results.length) {
+        toast.error('No results found');
         return;
       }
 
-      const { name, latitude, longitude } = geoData.results[0];
+      const { name, latitude, longitude } = results[0];
 
-      setLocation({
+      onSelectLocation({
         name,
         latitude,
         longitude,
@@ -53,23 +51,21 @@ const SearchCity = () => {
 
       setSearch('');
     } catch {
-      toast.error('City not found');
+      toast.error(`Error: there no such city`);
     }
   };
 
   return (
     <div>
-      <h2>City: {location?.name}</h2>
-
-      <Toaster position="top-right" />
-
+      <p>Search City</p>
       <input
+        type="text"
         value={search}
         onChange={e => setSearch(e.target.value)}
-        placeholder="Search city..."
+        placeholder="Search for a city..."
       />
-
       <button onClick={handleSearch}>Search</button>
+      <Toaster />
     </div>
   );
 };
