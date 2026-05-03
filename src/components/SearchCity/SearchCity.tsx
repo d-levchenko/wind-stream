@@ -17,10 +17,12 @@ const SearchCity = ({ onSelectLocation }: SearchCityProps) => {
   useEffect(() => {
     const loadInitial = async () => {
       try {
-        const { city, latitude, longitude } = await fetchGeoByIP();
+        const { city, country_name, latitude, longitude } =
+          await fetchGeoByIP();
 
         onSelectLocation({
           name: city,
+          country: country_name,
           latitude,
           longitude,
         });
@@ -41,10 +43,11 @@ const SearchCity = ({ onSelectLocation }: SearchCityProps) => {
         return;
       }
 
-      const { name, latitude, longitude } = results[0];
+      const { name, country, latitude, longitude } = results[0];
 
       onSelectLocation({
         name,
+        country,
         latitude,
         longitude,
       });

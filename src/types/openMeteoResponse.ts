@@ -5,6 +5,7 @@ export interface OpenMeteoResult {
   timezone: string;
   timezone_abbreviation: string;
   elevation: number;
+  country: string;
 }
 
 export interface OpenMeteoResponse {

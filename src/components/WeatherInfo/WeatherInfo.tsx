@@ -2,7 +2,7 @@ import type { SelectedLocation } from '../../types/SelectedLocation';
 import type { WeatherData } from '../../types/weatherResponse';
 
 import fetchWeather from '../../services/weather';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 
 interface WeatherInfoProps {
@@ -16,7 +16,6 @@ const WeatherInfo = ({ location }: WeatherInfoProps) => {
     const loadWeather = async () => {
       try {
         const data = await fetchWeather(location.latitude, location.longitude);
-
         setWeather(data);
       } catch {
         toast.error(`Error: something went wrong while loading weather`);
@@ -25,6 +24,27 @@ const WeatherInfo = ({ location }: WeatherInfoProps) => {
 
     loadWeather();
   }, [location.latitude, location.longitude]);
+
+  const currentIndex = useMemo(() => {
+    if (!weather) return -1;
+
+    const currentHour = weather.current_weather.time.slice(0, 13);
+
+    return weather.hourly.time.findIndex(t => t.slice(0, 13) === currentHour);
+  }, [weather]);
+
+  const apparentTemp =
+    currentIndex !== -1
+      ? weather?.hourly.apparent_temperature[currentIndex]
+      : null;
+
+  const humidity =
+    currentIndex !== -1
+      ? weather?.hourly.relativehumidity_2m[currentIndex]
+      : null;
+
+  const precipitation =
+    currentIndex !== -1 ? weather?.hourly.precipitation[currentIndex] : null;
 
   return (
     <div>
@@ -39,16 +59,13 @@ const WeatherInfo = ({ location }: WeatherInfoProps) => {
         {weather?.current_weather_units.windspeed}
       </p>
       <p>
-        Humidity: {weather?.hourly.relativehumidity_2m[0]}{' '}
-        {weather?.hourly_units.relativehumidity_2m}
+        Humidity: {humidity} {weather?.hourly_units.relativehumidity_2m}
       </p>
       <p>
-        Precipitation: {weather?.hourly.precipitation[0]}{' '}
-        {weather?.hourly_units.precipitation}
+        Precipitation: {precipitation} {weather?.hourly_units.precipitation}
       </p>
       <p>
-        Feels like: {weather?.hourly.apparent_temperature[0]}{' '}
-        {weather?.hourly_units.apparent_temperature}
+        Feels like: {apparentTemp} {weather?.hourly_units.apparent_temperature}
       </p>
     </div>
   );
