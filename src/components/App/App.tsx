@@ -9,8 +9,8 @@ const App = () => {
   const [location, setLocation] = useState<SelectedLocation | null>(null);
 
   return (
-    <div>
-      <h1>Weather Now</h1>
+    <div className="flex justify-center items-center flex-col">
+      <h1 className="text-white text-4xl">How's the sky looking today?</h1>
       <SearchCity onSelectLocation={setLocation} />
       {location && <WeatherInfo location={location} />}
     </div>

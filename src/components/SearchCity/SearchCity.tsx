@@ -59,15 +59,19 @@ const SearchCity = ({ onSelectLocation }: SearchCityProps) => {
   };
 
   return (
-    <div>
-      <p>Search City</p>
+    <div className="flex gap-3 pt-12">
       <input
+        className="text-white bg-gray-500 px-1 rounded-md"
         type="text"
         value={search}
         onChange={e => setSearch(e.target.value)}
-        placeholder="Search for a city..."
+        placeholder="Search for a place..."
       />
-      <button onClick={handleSearch}>Search</button>
+      <button
+        className="text-white bg-blue-400 p-1 rounded-md "
+        onClick={handleSearch}>
+        Search
+      </button>
       <Toaster />
     </div>
   );
