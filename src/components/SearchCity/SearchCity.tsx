@@ -6,6 +6,7 @@ import { fetchLocationByCity } from '../../services/geocoding';
 import type { SelectedLocation } from '../../types/SelectedLocation';
 
 import toast, { Toaster } from 'react-hot-toast';
+import { IoIosSearch } from 'react-icons/io';
 
 interface SearchCityProps {
   onSelectLocation: (location: SelectedLocation) => void;
@@ -59,16 +60,20 @@ const SearchCity = ({ onSelectLocation }: SearchCityProps) => {
   };
 
   return (
-    <div className="flex gap-3 pt-12">
+    <div className="flex gap-3 p-8 relative">
+      <span className="absolute flex justify-center items-center pt-2.5 pl-1">
+        <IoIosSearch color="#cfceee" size={20} />
+      </span>
       <input
-        className="text-white bg-gray-500 px-1 rounded-md"
+        className="text-white bg-gray-500 py-3 px-3 pl-8 rounded-md outline-none transition-all duration-300 ease-in-out"
         type="text"
         value={search}
         onChange={e => setSearch(e.target.value)}
         placeholder="Search for a place..."
       />
+
       <button
-        className="text-white bg-blue-400 p-1 rounded-md "
+        className="text-white bg-blue-400 px-5 rounded-md cursor-pointer hover:bg-blue-500 transition-colors duration-300 ease-in-out"
         onClick={handleSearch}>
         Search
       </button>
