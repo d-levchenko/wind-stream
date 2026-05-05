@@ -42,11 +42,13 @@ const App = () => {
         </div>
 
         {location && weather && (
-          <div className="mt-8 flex w-full flex-col gap-8">
-            <WeatherInfo location={location} weather={weather} />
-
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          <div className="mt-10 grid w-full grid-cols-1 gap-8 lg:grid-cols-3">
+            <div className="flex flex-col gap-8 lg:col-span-2">
+              <WeatherInfo location={location} weather={weather} />
               <DailyForecast weather={weather} />
+            </div>
+
+            <div className="lg:col-span-1">
               <HourlyForecast weather={weather} />
             </div>
           </div>
