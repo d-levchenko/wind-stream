@@ -1,75 +1,87 @@
-# React + TypeScript + Vite
+# Open Meteo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight weather dashboard built with React, TypeScript, Vite, and Tailwind
+CSS.
 
-Currently, two official plugins are available:
+The app detects the user location by IP on first load, lets users search for
+cities, and shows current conditions, an hourly temperature preview, and a
+multi-day daily forecast using the Open-Meteo API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Automatic location detection via `ipapi.co`
+- City search powered by Open-Meteo geocoding
+- Current weather display with temperature, wind speed, humidity, and
+  precipitation
+- Hourly forecast for the next 24 hours
+- Daily min/max temperature summary
+- Error handling with toast notifications
+- Responsive layout built with Tailwind CSS
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Built With
 
-Note: This will impact Vite dev & build performances.
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS
+- Axios
+- Open-Meteo API
+- `react-hot-toast`
+- `react-icons`
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- `src/components/App/App.tsx` — main UI layout and state management
+- `src/components/SearchCity/SearchCity.tsx` — city search and initial IP-based
+  location detection
+- `src/components/WeatherInfo/WeatherInfo.tsx` — current weather details
+- `src/components/HourlyForecast/HourlyForecast.tsx` — next 24-hour temperature
+  forecast
+- `src/components/DailyForecast/DailyForecast.tsx` — 7-day temperature range
+  cards
+- `src/services/weather.ts` — Open-Meteo forecast API integration
+- `src/services/geocoding.ts` — city lookup using Open-Meteo geocoding
+- `src/services/geolocation.ts` — IP-based location lookup
+- `src/types` — TypeScript definitions for API responses and selected location
+  data
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Install dependencies
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Run locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+Open the local Vite URL shown in your terminal to view the weather dashboard.
+
+### Build for production
+
+```bash
+npm run build
+```
+
+### Preview production build
+
+```bash
+npm run preview
+```
+
+## Notes
+
+- The app uses the free Open-Meteo APIs and may be subject to rate limits.
+- The initial location is fetched from `https://ipapi.co/json/` and may vary in
+  accuracy.
+
+## Future Improvements
+
+- Add unit toggle between Celsius and Fahrenheit
+- Improve search result selection when multiple cities match
+- Add weather icons and enhanced visuals
+- Support additional weather details like UV index or sunrise/sunset times
