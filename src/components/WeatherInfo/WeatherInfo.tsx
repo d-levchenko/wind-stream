@@ -31,42 +31,50 @@ const WeatherInfo = ({ location, weather }: WeatherInfoProps) => {
     currentIndex !== -1 ? weather?.hourly.precipitation[currentIndex] : null;
 
   return (
-    <div className="text-white p-8 flex flex-col gap-4">
-      <div className="flex justify-between items-center bg-[#322bac] p-10 rounded-md">
-        <p className="text-3xl">
-          {location.name}, {location.country}
+    <div className="flex w-full flex-col gap-4">
+      <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur sm:flex-row sm:items-center sm:justify-between sm:p-8">
+        <p className="text-xl font-semibold sm:text-2xl lg:text-3xl">
+          {location.name},{' '}
+          <span className="text-white/70">{location.country}</span>
         </p>
-        <p className="text-2xl">
+
+        <p className="text-3xl font-bold sm:text-4xl lg:text-5xl">
           {weather?.current_weather.temperature}{' '}
-          {weather?.current_weather_units.temperature}
+          <span className="text-lg font-medium text-white/70 sm:text-xl">
+            {weather?.current_weather_units.temperature}
+          </span>
         </p>
       </div>
-      <div className="flex gap-3">
-        <p className="flex flex-col gap-1 bg-[#25253f] py-2 px-3 rounded-md">
-          Feels like
-          <span>
+
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-md backdrop-blur">
+          <p className="text-sm text-white/70">Feels like</p>
+          <p className="mt-1 text-lg font-semibold sm:text-xl">
             {apparentTemp} {weather?.hourly_units.apparent_temperature}
-          </span>
-        </p>
-        <p className="flex flex-col gap-1 bg-[#25253f] py-2 px-3 rounded-md">
-          Wind
-          <span>
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-md backdrop-blur">
+          <p className="text-sm text-white/70">Wind</p>
+          <p className="mt-1 text-lg font-semibold sm:text-xl">
             {weather?.current_weather.windspeed}{' '}
             {weather?.current_weather_units.windspeed}
-          </span>
-        </p>
-        <p className="flex flex-col gap-1 bg-[#25253f] py-2 px-3 rounded-md">
-          Humidity
-          <span>
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-md backdrop-blur">
+          <p className="text-sm text-white/70">Humidity</p>
+          <p className="mt-1 text-lg font-semibold sm:text-xl">
             {humidity} {weather?.hourly_units.relativehumidity_2m}
-          </span>
-        </p>
-        <p className="flex flex-col gap-1 bg-[#25253f] py-2 px-3 rounded-md">
-          Precipitation
-          <span>
+          </p>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-md backdrop-blur">
+          <p className="text-sm text-white/70">Precipitation</p>
+          <p className="mt-1 text-lg font-semibold sm:text-xl">
             {precipitation} {weather?.hourly_units.precipitation}
-          </span>
-        </p>
+          </p>
+        </div>
       </div>
     </div>
   );

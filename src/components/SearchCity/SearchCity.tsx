@@ -60,23 +60,27 @@ const SearchCity = ({ onSelectLocation }: SearchCityProps) => {
   };
 
   return (
-    <div className="flex gap-3 p-8 relative">
-      <span className="absolute flex justify-center items-center pt-2.5 pl-1">
-        <IoIosSearch color="#cfceee" size={20} />
-      </span>
-      <input
-        className="text-white bg-gray-500 py-3 px-3 pl-8 rounded-md outline-none transition-all duration-300 ease-in-out"
-        type="text"
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        placeholder="Search for a place..."
-      />
+    <div className="flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+      <div className="relative w-full">
+        <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2">
+          <IoIosSearch color="#cfceee" size={20} />
+        </span>
+
+        <input
+          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pl-10 text-sm text-white placeholder:text-white/50 outline-none transition focus:border-white/20 focus:bg-white/10 sm:text-base"
+          type="text"
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          placeholder="Search for a city..."
+        />
+      </div>
 
       <button
-        className="text-white bg-blue-400 px-5 rounded-md cursor-pointer hover:bg-blue-500 transition-colors duration-300 ease-in-out"
+        className="rounded-xl bg-indigo-500 px-6 py-3 text-sm font-medium transition hover:bg-indigo-600 active:scale-[0.98] sm:text-base"
         onClick={handleSearch}>
         Search
       </button>
+
       <Toaster />
     </div>
   );

@@ -12,22 +12,27 @@ const DailyForecast = ({ weather }: DailyForecastProps) => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col p-10">
-      <h1 className="text-white text-4xl p-2">Daily Forecast</h1>
+    <div className="w-full rounded-2xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur sm:p-8">
+      <h2 className="text-xl font-semibold sm:text-2xl">Daily Forecast</h2>
 
       {weather && (
-        <div className="text-white flex flex-col gap-2">
+        <div className="mt-5 flex flex-col gap-3">
           {weather.daily.time.map((day, index) => (
-            <p key={day} className="flex justify-between w-72">
-              <span>{getDayName(day).slice(0, 3)}</span>
+            <div
+              key={day}
+              className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+              <span className="text-sm font-medium text-white/80 sm:text-base">
+                {getDayName(day).slice(0, 3)}
+              </span>
 
-              <span>
+              <span className="text-sm font-semibold sm:text-base">
                 {weather.daily.temperature_2m_min[index]}
-                {weather.daily_units.temperature_2m_min} /{' '}
+                {weather.daily_units.temperature_2m_min}{' '}
+                <span className="text-white/40">/</span>{' '}
                 {weather.daily.temperature_2m_max[index]}
                 {weather.daily_units.temperature_2m_max}
               </span>
-            </p>
+            </div>
           ))}
         </div>
       )}
