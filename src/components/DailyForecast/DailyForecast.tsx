@@ -1,4 +1,5 @@
 import type { WeatherData } from '../../types/weatherResponse';
+import getWeatherIcon from '../../utils/getWeatherIcon';
 
 interface DailyForecastProps {
   weather: WeatherData | null;
@@ -26,6 +27,10 @@ const DailyForecast = ({ weather }: DailyForecastProps) => {
               <p className="text-xs font-medium text-white/60 md:text-sm">
                 {getDayName(day).slice(0, 3)}
               </p>
+
+              <div className="flex justify-center">
+                {getWeatherIcon(weather.daily.weather_code[index])}
+              </div>
 
               <p className="mt-1 text-base font-semibold text-white md:text-lg">
                 {weather.daily.temperature_2m_min[index]}

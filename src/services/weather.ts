@@ -20,18 +20,21 @@ export const fetchWeather = async (
         'apparent_temperature',
         'relativehumidity_2m',
         'precipitation',
+        'weather_code',
       ].join(','),
 
       daily: [
         'temperature_2m_max',
         'temperature_2m_min',
         'precipitation_sum',
+        'weather_code',
       ].join(','),
 
       temperature_unit: unit === 'celsius' ? 'celsius' : 'fahrenheit',
     },
   });
 
+  console.log(data);
   return data;
 };
 

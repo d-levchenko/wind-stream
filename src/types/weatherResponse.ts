@@ -36,6 +36,7 @@ export interface WeatherData {
     temperature_2m_max: number[];
     temperature_2m_min: number[];
     precipitation_sum: number[];
+    weather_code: number[];
   };
 
   hourly_units: {
@@ -51,5 +52,6 @@ export interface WeatherData {
     apparent_temperature: number[];
     relativehumidity_2m: number[];
     precipitation: number[];
+    weather_code: number[];
   };
 }

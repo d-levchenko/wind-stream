@@ -2,6 +2,7 @@ import type { SelectedLocation } from '../../types/SelectedLocation';
 import type { WeatherData } from '../../types/weatherResponse';
 
 import { useMemo } from 'react';
+import getWeatherIcon from '../../utils/getWeatherIcon';
 
 interface WeatherInfoProps {
   location: SelectedLocation;
@@ -38,12 +39,16 @@ const WeatherInfo = ({ location, weather }: WeatherInfoProps) => {
           <span className="text-white/70">{location.country}</span>
         </p>
 
-        <p className="text-4xl font-bold text-white md:text-5xl">
-          {weather?.current_weather.temperature}{' '}
-          <span className="text-xl font-medium text-white/60">
-            {weather?.current_weather_units.temperature}
-          </span>
-        </p>
+        <div className="flex items-center justify-center gap-4">
+          {weather && getWeatherIcon(weather.current_weather.weathercode)}
+
+          <p className="text-4xl font-bold text-white md:text-5xl">
+            {weather?.current_weather.temperature}{' '}
+            <span className="text-xl font-medium text-white/60">
+              {weather?.current_weather_units.temperature}
+            </span>
+          </p>
+        </div>
       </div>
 
       <div className="flex flex-wrap gap-3 md:gap-4">
