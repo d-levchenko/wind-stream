@@ -11,6 +11,7 @@ import fetchWeather from '../../services/weather';
 
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import Footer from '../Footer/Footer';
 
 const App = () => {
   const [location, setLocation] = useState<SelectedLocation | null>(null);
@@ -55,6 +56,7 @@ const App = () => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };
