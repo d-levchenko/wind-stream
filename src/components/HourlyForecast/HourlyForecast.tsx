@@ -10,20 +10,22 @@ const HourlyForecast = ({ weather }: HourlyForecastProps) => {
   };
 
   return (
-    <div className="w-full rounded-2xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur sm:p-8">
-      <h2 className="text-xl font-semibold sm:text-2xl">Hourly Forecast</h2>
+    <div className="flex w-full flex-col rounded-2xl border border-white/10 bg-linear-to-br from-white/10 via-white/5 to-transparent p-6 shadow-lg backdrop-blur md:p-8 max-h-121">
+      <h2 className="text-xl font-semibold text-white md:text-2xl">
+        Hourly Forecast
+      </h2>
 
-      <div className="mt-5 max-h-105 overflow-y-auto pr-2">
+      <div className="mt-5 flex-1 min-h-0 overflow-y-auto pr-2 max-h-105 w-75">
         <div className="flex flex-col gap-3">
           {weather?.hourly.time.slice(0, 24).map((hour, index) => (
             <div
               key={hour}
-              className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+              className="flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3 transition-all duration-200 hover:border-white/20 hover:bg-white/10 hover:shadow-md">
               <span className="text-sm font-medium text-white/70">
                 {getHour(hour)}:00
               </span>
 
-              <span className="text-sm font-semibold">
+              <span className="text-sm font-semibold text-white">
                 {weather.hourly.temperature_2m[index]}
                 <span className="text-white/60">
                   {weather.hourly_units.temperature_2m}
