@@ -11,7 +11,7 @@ const HourlyForecast = ({ weather }: HourlyForecastProps) => {
   };
 
   return (
-    <div className="flex w-full flex-col rounded-2xl border border-white/10 bg-linear-to-br from-white/10 via-white/5 to-transparent p-6 shadow-lg backdrop-blur md:p-8 max-h-128">
+    <div className="flex w-full flex-col md:items-center md:justify-center rounded-2xl border border-white/10 bg-linear-to-br from-white/10 via-white/5 to-transparent p-6 shadow-lg backdrop-blur md:p-8 max-h-128">
       <h2 className="text-xl font-semibold text-white md:text-2xl">
         Hourly Forecast
       </h2>

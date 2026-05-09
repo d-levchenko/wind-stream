@@ -33,7 +33,7 @@ const App = () => {
   }, [location]);
 
   return (
-    <div className="mx-auto flex w-full max-w-300 flex-1 flex-col px-4 py-6 md:px-8 md:py-10">
+    <div className="mx-auto flex w-full xl:max-w-7xl md:max-w-3xl max-w-93.75 flex-1 flex-col px-4 py-6 md:px-8 md:py-10">
       <Header />
 
       <h1 className="mt-6 text-center text-3xl font-semibold tracking-tight text-white md:text-4xl xl:text-5xl">
