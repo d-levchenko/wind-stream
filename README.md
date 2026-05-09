@@ -7,6 +7,10 @@ The app detects the user location by IP on first load, lets users search for
 cities, and shows current conditions, an hourly temperature preview, and a
 multi-day daily forecast using the Open-Meteo API.
 
+## 🚀 Live Demo
+
+[View Live Application](https://wind-stream.vercel.app/)
+
 ## Features
 
 - Automatic location detection via `ipapi.co`
