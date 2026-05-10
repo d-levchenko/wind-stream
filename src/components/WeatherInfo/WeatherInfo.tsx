@@ -34,10 +34,10 @@ const WeatherInfo = ({ location, weather }: WeatherInfoProps) => {
   return (
     <div className="flex w-full flex-col gap-4">
       <div className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-linear-to-br from-indigo-500/20 via-white/5 to-transparent p-6 shadow-lg backdrop-blur transition-all duration-200 hover:border-white/20 hover:bg-white/10 md:flex-row md:items-center md:justify-between md:p-8">
-        <p className="text-xl font-semibold text-white md:text-2xl xl:text-3xl">
+        <h2 className="text-xl font-semibold text-white md:text-2xl xl:text-3xl text-center">
           {location.name},{' '}
           <span className="text-white/70">{location.country}</span>
-        </p>
+        </h2>
 
         <div className="flex items-center justify-center gap-4">
           {weather && getWeatherIcon(weather.current_weather.weathercode)}

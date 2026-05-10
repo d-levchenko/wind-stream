@@ -14,12 +14,12 @@ const DailyForecast = ({ weather }: DailyForecastProps) => {
 
   return (
     <div className="w-full rounded-2xl border border-white/10 bg-linear-to-br from-white/10 via-white/5 to-transparent p-6 shadow-lg backdrop-blur md:p-8">
-      <h2 className="text-xl font-semibold text-white md:text-2xl">
+      <h2 className="text-xl font-semibold text-white md:text-2xl xl:pl-11  ">
         Daily Forecast
       </h2>
 
       {weather && (
-        <div className="mt-5 flex gap-3 overflow-x-auto pb-3">
+        <div className="flex gap-3 overflow-x-auto py-5 xl:justify-center">
           {weather.daily.time.map((day, index) => (
             <div
               key={day}
